@@ -11,9 +11,10 @@ import android.widget.ListView;
 public class MainActivity extends ActivityBase implements
 		AdapterView.OnItemClickListener {
 
-	private static final String[] ITEMS = { "VideoView", "SurfaceView" };
+	private static final String[] ITEMS = { "VideoView", "SurfaceView",
+			"GLSurfaceView" };
 	private static final Class<?>[] ACTIVITIES = { VideoViewActivity.class,
-			SurfaceViewActivity.class };
+			SurfaceViewActivity.class, GLSurfaceViewActivity.class };
 	private String mediaPath;
 
 	@Override

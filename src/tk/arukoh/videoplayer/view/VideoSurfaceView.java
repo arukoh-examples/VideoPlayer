@@ -14,7 +14,6 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
 import android.widget.MediaController;
-import android.widget.MediaController.MediaPlayerControl;
 
 public class VideoSurfaceView extends SurfaceView implements Callback,
 		OnPreparedListener {
@@ -45,10 +44,6 @@ public class VideoSurfaceView extends SurfaceView implements Callback,
 		mediaUri = Uri.parse(path);
 	}
 
-	public void setMediaController(MediaController controller) {
-		mediaController = controller;
-	}
-
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if (mediaController != null) {
@@ -72,7 +67,7 @@ public class VideoSurfaceView extends SurfaceView implements Callback,
 			mediaPlayer.prepareAsync();
 
 			mediaController = new MediaController(getContext());
-			mediaController.setMediaPlayer(new Control(mediaPlayer));
+			mediaController.setMediaPlayer(new MediaPlayerControl(mediaPlayer));
 			mediaController.setAnchorView(this);
 			mediaController.setEnabled(true);
 		} catch (IllegalArgumentException e) {
@@ -125,65 +120,6 @@ public class VideoSurfaceView extends SurfaceView implements Callback,
 			lp.height = screenHeight;
 		}
 		setLayoutParams(lp);
-	}
-
-	private static class Control implements MediaPlayerControl {
-
-		private final MediaPlayer mediaPlayer;
-
-		Control(MediaPlayer mediaPlayer) {
-			this.mediaPlayer = mediaPlayer;
-		}
-
-		@Override
-		public boolean canPause() {
-			return true;
-		}
-
-		@Override
-		public boolean canSeekBackward() {
-			return true;
-		}
-
-		@Override
-		public boolean canSeekForward() {
-			return true;
-		}
-
-		@Override
-		public int getBufferPercentage() {
-			return 0;
-		}
-
-		@Override
-		public int getCurrentPosition() {
-			return mediaPlayer.getCurrentPosition();
-		}
-
-		@Override
-		public int getDuration() {
-			return mediaPlayer.getDuration();
-		}
-
-		@Override
-		public boolean isPlaying() {
-			return mediaPlayer.isPlaying();
-		}
-
-		@Override
-		public void pause() {
-			mediaPlayer.pause();
-		}
-
-		@Override
-		public void seekTo(int pos) {
-			mediaPlayer.seekTo(pos);
-		}
-
-		@Override
-		public void start() {
-			mediaPlayer.start();
-		}
 	}
 
 }

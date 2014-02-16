@@ -30,6 +30,10 @@
             android:name="tk.arukoh.videoplayer.SurfaceViewActivity"
             android:label="@string/title_activity_surface_view" >
         </activity>
+        <activity
+            android:name="tk.arukoh.videoplayer.GLSurfaceViewActivity"
+            android:label="@string/title_activity_glsurface_view" >
+        </activity>
     </application>
 
 </manifest>
